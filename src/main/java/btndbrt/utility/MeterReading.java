@@ -37,4 +37,21 @@ public class MeterReading {
     public String toString() {
         return utilityType + " " + period + ": " + value;
     }
+
+    public int usageSince(MeterReading previous) {
+        if (previous == null) {
+            throw new IllegalArgumentException("period must not be null");
+        }
+        if (this.utilityType != previous.utilityType) {
+            throw new IllegalArgumentException("The two readings must be the same utility type");
+        }
+        if (!this.period.isAfter(previous.period)) {
+            throw new IllegalArgumentException("The previous reading's period must be before the current one's");
+        }
+        if (this.value < previous.value) {
+            throw new IllegalArgumentException("The previous reading's value must not be higher than the current value");
+        }
+        
+        return this.value - previous.value;
+    }
 }
