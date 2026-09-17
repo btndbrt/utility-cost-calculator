@@ -40,7 +40,7 @@ public class MeterReading {
 
     public int usageSince(MeterReading previous) {
         if (previous == null) {
-            throw new IllegalArgumentException("previous must not be null");
+            throw new IllegalArgumentException("previous reading must not be null");
         }
         if (this.utilityType != previous.utilityType) {
             throw new IllegalArgumentException("The two readings must be the same utility type");
