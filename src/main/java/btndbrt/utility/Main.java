@@ -13,7 +13,7 @@ public class Main {
         boolean run = true;
 
         while (run) {
-            System.out.println("***UTILITY COST CALCULATOR CLI***\n");
+            System.out.println("\n***UTILITY COST CALCULATOR CLI***\n");
             System.out.println("1) Add reading\n" + "2) List readings\n" + "0) Exit\n");
             
             String line = sc.nextLine();
@@ -36,48 +36,48 @@ public class Main {
                             break;
                     
                         default:
-                            System.out.println("Try again.\n");
+                            System.out.println("Try again");
                             continue;
                     }
 
                     YearMonth period;
 
-                    System.out.println("Year?\n");
+                    System.out.println("Year?");
                     line = sc.nextLine();
 
                     int year;
                     try {
                         year = Integer.parseInt(line);
                     } catch (NumberFormatException e) {
-                        System.out.println(e.getMessage());
+                        System.out.println("Invalid number");
                         continue;
                     }
 
-                    System.out.println("Month?\n");
+                    System.out.println("Month?");
                     line = sc.nextLine();
 
                     int month;
                     try {
                         month = Integer.parseInt(line);
                     } catch (NumberFormatException e) {
-                        System.out.println(e.getMessage());
+                        System.out.println("Invalid number");
                         continue;
                     }
                     try {
                         period = YearMonth.of(year, month);
                     } catch (DateTimeException e) {
-                        System.out.println(e.getMessage());
+                        System.out.println("Invalid date");
                         continue;
                     }
 
-                    System.out.println("Value?\n");
+                    System.out.println("Value?");
                     line = sc.nextLine();
 
                     int value;
                     try {
                         value = Integer.parseInt(line);
                     } catch (NumberFormatException e) {
-                        System.out.println(e.getMessage());
+                        System.out.println("Invalid number");
                         continue;
                     }
 
@@ -85,13 +85,16 @@ public class Main {
                         MeterReading newReading = new MeterReading(utilityType, period, value);
                         book.add(newReading);
                     } catch (IllegalArgumentException e) {
-                        System.out.println(e.getMessage());
+                        System.err.println(e.getMessage());
                         continue;
                     }
 
                     break;
                 
                 case "2":
+                    for (int i = 0; i < book.getAll().size(); ++i) {
+                        System.out.println(book.getAll().get(i));
+                    }
 
                     break;
 
@@ -101,7 +104,7 @@ public class Main {
                     continue;
             
                 default:
-                    System.out.println("Try again.\n");
+                    System.out.println("Try again");
                     break;
             }
         }
