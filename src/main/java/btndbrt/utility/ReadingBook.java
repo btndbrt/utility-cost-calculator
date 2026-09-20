@@ -18,6 +18,13 @@ public class ReadingBook {
         readings.add(newReading);
     }
 
+    public void delete(int idx) {
+        if (idx >= readings.size() || idx < 0) {
+            throw new IllegalArgumentException("index out of range");
+        }
+        readings.remove(idx);
+    }
+
     public List<MeterReading> getAll() {
         return List.copyOf(this.readings);
     }

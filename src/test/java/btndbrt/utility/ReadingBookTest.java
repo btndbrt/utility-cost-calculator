@@ -42,4 +42,12 @@ public class ReadingBookTest {
         r0.add(m0);
         assertDoesNotThrow(() -> r0.add(m1));
     }
+
+    @Test
+    void invalidIdThrows() {
+        ReadingBook r0 = new ReadingBook();
+        MeterReading m0 = new MeterReading(UtilityType.GAS, YearMonth.of(2026, 9), 1000);
+        r0.add(m0);
+        assertThrows(IllegalArgumentException.class, () -> r0.delete(1));
+    }
 }
