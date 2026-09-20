@@ -2,6 +2,7 @@ package btndbrt.utility;
 import java.time.YearMonth;
 import java.util.Scanner;
 import java.time.DateTimeException;
+import java.time.Period;
 
 public class Main {
 
@@ -24,26 +25,30 @@ public class Main {
             switch (line) {
 
                 // ADD READING
-                case "1":
+                case "1": {
                     System.out.println("\n1) ELECTRICITY\n" + "2) GAS\n" + "3) WATER\n");
                     line = sc.nextLine();
                     UtilityType utilityType;
                     switch (line) {
-                        case "1":
+                        case "1": {
                             utilityType = UtilityType.ELECTRICITY;
                             break;
+                        }
 
-                        case "2":
+                        case "2": {
                             utilityType = UtilityType.GAS;
                             break;
+                        }
 
-                        case "3":
+                        case "3": {
                             utilityType = UtilityType.WATER;
                             break;
+                        }
                     
-                        default:
+                        default: {
                             System.out.println("Try again");
                             continue;
+                        }
                     }
 
                     YearMonth period;
@@ -96,9 +101,9 @@ public class Main {
                     }
 
                     break;
-                
+                }
                 // LIST READINGS
-                case "2":
+                case "2": {
                     if (book.getAll().size() == 0) {
                         System.out.println("No readings to show :(");
                         continue;
@@ -108,9 +113,10 @@ public class Main {
                     }
 
                     break;
+                }
 
                 // DELETE READING
-                case "3":
+                case "3": {
                     System.out.println("ID?");
                     line = sc.nextLine();
                     int id;
@@ -128,21 +134,22 @@ public class Main {
                     System.out.println("Successfully deleted id: " + id);
 
                     break;
-
+                }
                 // CALCULATE COST
-                case "4":
+                case "4": {
 
                     break;
-
+                }
                 // EXIT
-                case "0":
+                case "0": {
                     sc.close();
                     run = false;
                     continue;
-            
-                default:
+                }
+                default: {
                     System.out.println("Try again");
                     break;
+                }
             }
         }
     }
