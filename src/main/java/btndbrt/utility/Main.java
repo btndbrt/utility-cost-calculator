@@ -14,10 +14,16 @@ public class Main {
 
         while (run) {
             System.out.println("\n***UTILITY COST CALCULATOR CLI***\n");
-            System.out.println("1) Add reading\n" + "2) List readings\n" + "0) Exit\n");
+            System.out.println("1) Add reading");
+            System.out.println("2) List readings");
+            System.out.println("3) Delete reading");
+            System.out.println("4) Calculate costs");
+            System.out.println("0) Exit");
             
             String line = sc.nextLine();
             switch (line) {
+
+                // ADD READING
                 case "1":
                     System.out.println("\n1) ELECTRICITY\n" + "2) GAS\n" + "3) WATER\n");
                     line = sc.nextLine();
@@ -91,13 +97,44 @@ public class Main {
 
                     break;
                 
+                // LIST READINGS
                 case "2":
+                    if (book.getAll().size() == 0) {
+                        System.out.println("No readings to show :(");
+                        continue;
+                    }
                     for (int i = 0; i < book.getAll().size(); ++i) {
-                        System.out.println(book.getAll().get(i));
+                        System.out.println("\nID: " + i + " " + book.getAll().get(i));
                     }
 
                     break;
 
+                // DELETE READING
+                case "3":
+                    System.out.println("ID?");
+                    line = sc.nextLine();
+                    int id;
+                    try {
+                        id = Integer.parseInt(line);
+                    } catch (NumberFormatException e) {
+                        System.out.println("Invalid number");
+                        continue;
+                    }
+                    if (id >= book.getAll().size() || id < 0) {
+                        System.out.println("Invalid ID");
+                        continue;
+                    }
+                    book.delete(id);
+                    System.out.println("Successfully deleted id: " + id);
+
+                    break;
+
+                // CALCULATE COST
+                case "4":
+
+                    break;
+
+                // EXIT
                 case "0":
                     sc.close();
                     run = false;
